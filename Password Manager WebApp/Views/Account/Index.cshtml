@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Password_Manager_WebApp.Models.Entities.Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+    
+@if (TempData["UpdatedAccountDetail"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Your @TempData["UpdatedAccountDetail"].ToString() has been successfully changed!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
+<div class="pb-2 mt-4 mb-2">
+    <span class="h4"> Accounts </span>
+    <span class="h6 font-weight-light invisible my-result-message">Showing results for "@ViewBag.SearchKeyword"</span>
+
+    <script>
+        var searchkeyword = '@(ViewBag.SearchKeyword)';
+    </script>
+
+    <div class="float-right">
+        @using (Html.BeginForm("Index", "Account", FormMethod.Get, new { @class = "form-inline" }))
+{
+            <div class="custom-control custom-checkbox mr-2">
+                @Html.CheckBox("showInactive", false, new { @class = "custom-control-input" })
+                <label class="custom-control-label" for="showInactive">Show Inactive</label>
+            </div>
+
+            <div class="input-group">
+                @Html.TextBox("searchKeyword", null, new { @class = "form-control", @placeholder = "Search" })
+                <div class="input-group-append" id="button-addon4">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                    <a href="@Url.Action("Index", "Account")" class="btn btn-outline-danger">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+<div class="table-responsive mb-3">
+    <table class="table table-hover table-bordered">
+
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApplicationName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MobileNumber)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {                
+                string defineClass = "";
+                if (item.Status == "Inactive")
+                {
+                    defineClass = "class = bg-inactive";
+                }
+                
+                <tr @defineClass>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNumber)
+                    </td>
+                    <td style="text-align: center">
+                        <button type="button" class="btn btn-primary btn-sm viewModalButton" data-id="@item.AccountID"> View </button>
+                        @Html.ActionLink("Edit", "EditDetails", new { @id = item.AccountID }, new { @class = "btn btn-warning btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>  
+
+<div id="dynamicModal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="modalDynamicContent">
+            @* Dynamic content including modal header, body and footer. *@
+        </div>
+    </div>
+</div>   
+
+

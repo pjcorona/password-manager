@@ -1,0 +1,82 @@
+﻿/*CUSTOM*/
+table tr th
+{
+    text-align: center;
+}
+
+.my-navbar
+{
+    margin-bottom: 40px;
+}
+
+.form-horizontal input[type="text"]
+{
+    width: 300px;
+}
+
+.modal-body label
+{
+    text-align: right;
+}
+
+.new-account-card
+{
+    width: 100%;
+    margin: auto;
+    margin-top: 35px;
+}
+
+@media (min-width:992px) {
+    .new-account-card {
+        width: 60%;
+    }
+}
+
+.my-footer
+{
+    border-top: 1px solid gray;
+    background-color: black;
+    padding: 7px;
+    text-align: center;
+    width: 100%;
+}
+
+.my-footer span
+{
+    color: white;
+    font-size: small;
+}
+
+
+
+.bg-inactive
+{
+    background-color: #c49d9d;
+}
+
+
+/* styles for validation helpers */
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}

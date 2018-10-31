@@ -1,0 +1,86 @@
+﻿@model Password_Manager_WebApp.Models.ViewModels.AccountEntryViewModel
+@{
+    ViewBag.Title = "New Account";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card new-account-card">
+        <div class="card-header">
+            <span class="h3">New Account</span>
+            <div class="float-right">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+                <input type="submit" value="Add" class="btn btn-success" />
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.AccountDetails.ApplicationName, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.AccountDetails.ApplicationName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AccountDetails.ApplicationName)
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.AccountDetails.EmailAddress, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.AccountDetails.EmailAddress, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.AccountDetails.EmailAddress)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.AccountDetails.Username, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.AccountDetails.Username, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.AccountDetails.Username)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.AccountDetails.MobileNumber, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.AccountDetails.MobileNumber, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.AccountDetails.MobileNumber)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Password, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    <div class="input-group" id="show-hide-password">
+                        @Html.TextBoxFor(model => model.Password, new { @type = "password", @class = "form-control" })
+                        <div class="input-group-append">
+                            <span class="input-group-text my-toggle" style="cursor: pointer">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.RepeatPassword, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    @Html.PasswordFor(model => model.RepeatPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RepeatPassword)
+                </div>
+            </div>
+        </div>
+
+    </div>    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

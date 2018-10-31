@@ -1,0 +1,77 @@
+﻿@model Password_Manager_WebApp.Models.Entities.Account
+
+<script>
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $('[data-toggle="tooltip"]').on('click', function () {
+            $(this).attr('data-original-title', "Copied!").tooltip('show');
+        }).on('hide.bs.tooltip', function () {
+            $(this).attr('data-original-title', "Click to copy.");
+        });
+    });
+
+
+</script>
+
+<div class="modal-header">
+    <h4 class="modal-title">Account Details</h4>
+    @Html.TextAreaFor(model => model.Password, new { @id = "password-value", @style = "opacity: 0", @rows = "1" })
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="form-horizontal">
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ApplicationName, new { @class = "col-sm-5" })
+            <div class="col-md-7">
+                @Html.DisplayTextFor(model => model.ApplicationName)
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.EmailAddress, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DisplayTextFor(model => model.EmailAddress)
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Username, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DisplayTextFor(model => model.Username)
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.MobileNumber, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DisplayTextFor(model => model.MobileNumber)
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Status, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @Html.DisplayTextFor(model => model.Status)
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Password, new { @class = "col-md-5" })
+            <div class="col-md-7">
+                @{
+                    string initialMask = new string('*', Model.Password.Length);
+                }
+                <span class="password-mask" data-toggle="tooltip" data-placement="right" title="Click to copy." style="cursor: pointer">
+                    @initialMask
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>

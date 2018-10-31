@@ -1,0 +1,42 @@
+﻿@model Password_Manager_WebApp.Models.ViewModels.ChangeUsernameViewModel
+
+@{
+    ViewBag.Title = "Change Username";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="card w-50 m-auto">
+        <div class="card-header">
+            <h5>Change Username</h5>
+        </div>
+        <div class="card-body">
+
+            <div class="form-group row">
+                <span class = "col-sm-4 col-form-label">Current Username</span>
+                <div class="col-md-8 col-form-label">
+                    @User.Identity.Name
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.NewUsername, new { @class = "col-sm-4 col-form-label" })
+                <div class="col-md-8">
+                    @Html.TextBoxFor(model => model.NewUsername, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NewUsername)
+                    @Html.ValidationMessage("InvalidCurrentPassword")
+                </div>
+            </div>
+           
+        </div>
+        <div class="card-footer">
+            <div class="float-right">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+
+}
+
